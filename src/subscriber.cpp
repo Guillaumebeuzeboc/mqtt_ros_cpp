@@ -8,36 +8,36 @@ mqttSubscriber::mqttSubscriber(const char *id, const char * topic, const char *h
 
 void mqttSubscriber::startSubscribe()
 {
-    this->subscribe(NULL, topic_);
+  this->subscribe(NULL, topic_);
 }
 
 void mqttSubscriber::on_subscribe(int mid, int qos_count, const int *granted_qos)
 {
-    ROS_INFO_STREAM_ONCE("mqttSubscribe - Message (" << mid << ") succeed to subscribe");
+  ROS_INFO_STREAM_ONCE("mqttSubscribe - Message (" << mid << ") succeed to subscribe");
 }
 
 void mqttSubscriber::on_message(const struct mosquitto_message *message)
 {
-    int payload_size = max_payload_ + 1;
-    char buf[payload_size];
-    ROS_INFO_STREAM("a message is received");
+  int payload_size = max_payload_ + 1;
+  char buf[payload_size];
+  ROS_INFO_STREAM("a message is received");
 
-    if(!strcmp(message->topic, topic_))
-    {
-        memset(buf, 0, payload_size * sizeof(char));
+  if(!strcmp(message->topic, topic_))
+  {
+    memset(buf, 0, payload_size * sizeof(char));
 
-        /* Copy N-1 bytes to ensure always 0 terminated. */
-        memcpy(buf, message->payload, max_payload_ * sizeof(char));
-        ROS_INFO_STREAM("message received: "<< buf);
-    }
+    /* Copy N-1 bytes to ensure always 0 terminated. */
+    memcpy(buf, message->payload, max_payload_ * sizeof(char));
+    ROS_INFO_STREAM("message received: "<< buf);
+  }
 }
 
 void mqttSubscriber::on_connect(int rc)
 {
-    if ( rc == 0 ) {
-        ROS_INFO_ONCE("myMqtt - connected with server");
-        this->startSubscribe();
-    }else{
-         ROS_WARN_STREAM_ONCE("myMqtt - Impossible to connect with server(" << rc << ")");
-    }
+  if ( rc == 0 ) {
+    ROS_INFO_ONCE("myMqtt - connected with server");
+    this->startSubscribe();
+  }else{
+    ROS_WARN_STREAM_ONCE("myMqtt - Impossible to connect with server(" << rc << ")");
+  }
 }
