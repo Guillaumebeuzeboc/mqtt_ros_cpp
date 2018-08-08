@@ -8,10 +8,9 @@ int main(int argc, char *argv[])
 
   ros::Rate loop_rate(100);
 
-
   while(ros::ok())
   {
-    mySubscriber.update();
+
     ros::spinOnce();
     loop_rate.sleep();
   }

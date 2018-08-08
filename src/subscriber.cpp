@@ -6,7 +6,7 @@ mqttSubscriber::mqttSubscriber(const char *id, const char * topic, const char *h
 {
 }
 
-void mqttSubscriber::update()
+void mqttSubscriber::startSubscribe()
 {
     this->subscribe(NULL, topic_);
 }
@@ -29,5 +29,15 @@ void mqttSubscriber::on_message(const struct mosquitto_message *message)
         /* Copy N-1 bytes to ensure always 0 terminated. */
         memcpy(buf, message->payload, max_payload_ * sizeof(char));
         ROS_INFO_STREAM("message received: "<< buf);
+    }
+}
+
+void mqttSubscriber::on_connect(int rc)
+{
+    if ( rc == 0 ) {
+        ROS_INFO_ONCE("myMqtt - connected with server");
+        this->startSubscribe();
+    }else{
+         ROS_WARN_STREAM_ONCE("myMqtt - Impossible to connect with server(" << rc << ")");
     }
 }
