@@ -11,10 +11,10 @@ public:
   void startSubscribe();
 
   void on_connect(int rc);
-
-private:
   void on_message(const struct mosquitto_message *message);
   void on_subscribe(int mid, int qos_count, const int *granted_qos);
+
+private:
 
   int max_payload_;
 };
