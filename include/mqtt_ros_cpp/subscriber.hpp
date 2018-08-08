@@ -1,7 +1,7 @@
 #ifndef SUBSCRIBER_HPP
 #define SUBSCRIBER_HPP
 
-#include <mqtt_test/myMqtt.hpp>
+#include <mqtt_ros_cpp/myMqtt.hpp>
 
 class mqttSubscriber : public myMqtt
 {

@@ -1,4 +1,4 @@
-#include <mqtt_test/publisher.hpp>
+#include <mqtt_ros_cpp/publisher.hpp>
 
 
 mqttPublisher::mqttPublisher(const char * id,const char * topic, const char * host, int port):

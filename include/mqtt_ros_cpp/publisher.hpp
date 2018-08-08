@@ -1,7 +1,7 @@
 #ifndef PUBLISHER_HPP
 #define PUBLISHER_HPP
 
-#include <mqtt_test/myMqtt.hpp>
+#include <mqtt_ros_cpp/myMqtt.hpp>
 
 class mqttPublisher : public myMqtt
 {

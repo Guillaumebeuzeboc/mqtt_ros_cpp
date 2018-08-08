@@ -1,4 +1,4 @@
-#include <mqtt_test/publisher.hpp>
+#include <mqtt_ros_cpp/publisher.hpp>
 
 int main(int argc, char *argv[])
 {

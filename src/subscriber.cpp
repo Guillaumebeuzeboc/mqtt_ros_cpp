@@ -1,4 +1,4 @@
-#include <mqtt_test/subscriber.hpp>
+#include <mqtt_ros_cpp/subscriber.hpp>
 
 mqttSubscriber::mqttSubscriber(const char *id, const char * topic, const char *host, int port, int max_payload):
   myMqtt(id, topic, host, port),
